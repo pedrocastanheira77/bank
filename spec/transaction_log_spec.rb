@@ -11,9 +11,9 @@ describe Transaction_log do
     allow(deposit).to receive(:date)
   end
 
-  describe "#add_transaction" do
+  describe "#add_new" do
     it 'adds a transaction to the transactions' do
-      expect{transaction_log.add_transaction(deposit)}.to change{transaction_log.transactions.length}.by(1)
+      expect{transaction_log.add_new(deposit)}.to change{transaction_log.transactions.length}.by(1)
     end
   end
 
@@ -31,8 +31,8 @@ describe Transaction_log do
       allow(withdrawal).to receive(:amount).and_return(500)
       allow(withdrawal).to receive(:date).and_return(date)
       transaction_log.update_log(withdrawal)
-      expect(transaction_log.log).to include [date, 'deposit', 1500, 1500]
-      expect(transaction_log.log).to include [date, 'withdrawal', 500, 1000]
+      expect(transaction_log.list).to include [date, 'deposit', 1500, 1500]
+      expect(transaction_log.list).to include [date, 'withdrawal', 500, 1000]
     end
   end
 end
