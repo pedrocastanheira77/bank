@@ -1,7 +1,9 @@
 class Transaction
+  attr_reader :type, :amount, :date
 
-  def self.create_new(type, amount, time = Time.now)
-    [time, type, amount]
+  def initialize(type, amount, date = Time.now)
+    @type = type
+    @amount = amount
+    @date = date
   end
-
 end

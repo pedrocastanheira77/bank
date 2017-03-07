@@ -3,16 +3,27 @@ require 'transaction'
 describe Transaction do
   TYPE = 'deposit'
   AMOUNT = 1000
-  
-  describe "#create_new" do
-    it 'has a create_new method' do
-      expect(Transaction).to respond_to(:create_new).with(2).argument
-    end
+  let(:date) {double :date}
+  subject(:transaction){described_class.new(TYPE, AMOUNT, date)}
 
-    context 'when a transaction is done' do
-      it 'contains transaction type, amount, and date' do
-        time = "11-12-2016"
-        expect(Transaction.create_new(TYPE, AMOUNT, time)).to eq [time, TYPE, AMOUNT]
+  describe "#type" do
+    context 'when a transaction is created' do
+      it 'contains transaction type' do
+        expect(transaction.type).to eq TYPE
+      end
+    end
+  end
+  describe "#amount" do
+    context 'when a transaction is created' do
+      it 'contains transaction amount' do
+        expect(transaction.amount).to eq AMOUNT
+      end
+    end
+  end
+  describe "#date" do
+    context 'when a transaction is created' do
+      it 'contains transaction date' do
+        expect(transaction.date).to eq date
       end
     end
   end
